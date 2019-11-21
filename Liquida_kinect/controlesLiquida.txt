@@ -1,0 +1,41 @@
+Instrucciones Líquida V. Kinect.
+
+Tomar en cuenta si son mayusculas o minusculas.
+
+Controles de camara:
+
+S = Zoom in
+
+A = Zoom out
+
+Dando click y desplazando el mouse se cambia el punto de vusta
+
+Controles de la retícula:
+SHIFT1 APAREZCA SHIFT 2 DESAPAREZA
+
+G = La alejamos de la Kinect
+H = La Acercamos a la Kinect
+
+U = Subir la reticula
+I = Bajar la reticula
+
+Controles de resulucion de la nube de puntos:
+
+N = mayor resolucion, mayor peso de prosesamiento
+
+M = menor resolucion, menor peso de procesamiento. 
+
+Profundidad de rastreo de la nube de puntos:
+
+k = Menor profundidad
+
+L = mayor profundidad
+
+
+
+NT. La profundidad del rastreo ayuda a que el programa no vea las cosas de una cierta distancia para allá.
+
+NT. Si la computadora no es muy potente bajar la resolucion
+
+
+
