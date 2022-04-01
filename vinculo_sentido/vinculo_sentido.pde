@@ -40,41 +40,10 @@
  ///////////////////////////////////////////////////
  Instrucciones Líquida V. Kinect.
  
- Tomar en cuenta si son mayusculas o
- minusculas.
+ Teclas de control de camara (MAYUSCULAS):Q W E R T A S D F
+ Teclas de estados:1 2 3
+ Tecla de grabacion: Z
  
- Controles de camara:
- 
- S = Zoom in
- 
- A = Zoom out
- 
- Dando click y desplazando el mouse
- se cambia el punto de vusta
- 
- Controles de la retícula:
- 
- G = La alejamos de la Kinect
- H = La Acercamos a la Kinect
- 
- U = Subir la reticula
- I = Bajar la reticula
- 
- Controles de resulucion de la nube
- de puntos:
- 
- N = mayor resolucion, mayor peso de
- prosesamiento
- 
- M = menor resolucion, menor peso de
- procesamiento.
- 
- Profundidad de rastreo de la nube de
- puntos:
- 
- k = Menor profundidad
- 
- L = mayor profundidad
  
  NT. La profundidad del rastreo ayuda
  a que el programa no vea las cosas
@@ -89,8 +58,8 @@
 
 // bibliotecas
 import ddf.minim.*;
-
-
+import java.util.Scanner;
+import java.util.InputMismatchException;
 import processing.opengl.*;
 import SimpleOpenNI.*;
 
@@ -127,7 +96,7 @@ String[][] tracks =
   {
     "C1.mp3", "C2.mp3", "C3.mp3", "C4.mp3"
   }
-   ,
+  ,
   {
     "D1.mp3", "D2.mp3", "D3.mp3", "D4.mp3"
   }
@@ -267,6 +236,12 @@ void draw() {
 
   case 0:
 
+    println("menu + " + estado);
+
+    break;
+
+  case 1:
+
     for (int i = 0; i < depthPoints.length; i+=pasos) {
       PVector currentPoint = depthPoints[i];
       if (currentPoint.z < profundidad)
@@ -284,7 +259,7 @@ void draw() {
 
     break;
 
-  case 1:
+  case 2:
 
 
     // beginShape(POINTS);
@@ -390,13 +365,15 @@ void keyPressed() {
   //controles de la nube de puntos
 
   // resolucion
-  if (key == 'Q') {
+  if (key == 'T') {
     pasos++;
+    println("resolucion + " + pasos);
   }
 
-  if (key == 'A') {
+  if (key == 'G') {
     if (pasos<=3) {
       pasos = 3;
+      println("resolucion - " + pasos);
     }
 
     pasos--;
@@ -404,11 +381,13 @@ void keyPressed() {
 
   //PROFUNDIDAD DEL RASTREO DE PUNTOS
 
-  if (key == 'W') {
+  if (key == 'R') {
     profundidad =  profundidad+= 100;
+    println("profundidad + " + profundidad);
   }
-  if (key == 'S') {
+  if (key == 'F') {
     profundidad =  profundidad-= 100;
+    println("profundidad - " + profundidad);
   }
 
   // controles de ubicacion de los botones
@@ -422,6 +401,7 @@ void keyPressed() {
       for (int l = 0; l < row; l++)
       {
         botLiq[k][l].center.y += aumentoElev;
+        println("subir " + botLiq[k][l].center.y);
       }
     }
   }
@@ -432,13 +412,14 @@ void keyPressed() {
       for (int l = 0; l < row; l++)
       {
         botLiq[k][l].center.y -= aumentoElev;
+        println("bajar " + botLiq[k][l].center.y);
       }
     }
   }
 
   // estos son para alejarla y acercarla a liquida
 
-  if (key == 'R')
+  if (key == 'W')
   {
     distRet += 50;
     for (int k = 0; k < col; k++)
@@ -446,10 +427,11 @@ void keyPressed() {
       for (int l = 0; l < row; l++)
       {
         botLiq[k][l].center.z += distRetAumento;
+        println("alejar " + botLiq[k][l].center.z);
       }
     }
   }
-  if (key == 'F')
+  if (key == 'S')
   {
     distRet -= 50;
     for (int k = 0; k < col; k++)
@@ -457,6 +439,7 @@ void keyPressed() {
       for (int l = 0; l < row; l++)
       {
         botLiq[k][l].center.z -= distRetAumento;
+        println("acercar " + botLiq[k][l].center.z);
       }
     }
   }
@@ -464,25 +447,79 @@ void keyPressed() {
   //controles de camara
 
   // zoom
-  if (key == 'G') {
+  if (key == 'A') {
     s = s+ 0.01;
+    println("zoom + " + s);
   }
 
-  if (key == 'T') {
+  if (key == 'Q') {
 
     s = s - 0.01;
+    println("zoom - " + s);
   }
 
   //controles de los estados
   if (key == '0') {
     estado = 0;
+    println("estado + " + estado);
   }
 
   if (key == '1') {
     estado = 1;
+    println("estado + " + estado);
   }
 
   if (key == '2') {
     estado = 2;
+    println("estado + " + estado);
+  }
+
+  if (key == 'Z') {
+    noLoop();
+  }
+  if (key == 'X') {
+    loop();
+  }
+}
+
+
+void menu() {
+  Scanner sn = new Scanner(System.in);
+  boolean salir = false;
+  int opcion; //Guardaremos la opcion del usuario
+
+  while (!salir) {
+
+    System.out.println("1. Opcion 1");
+    System.out.println("2. Opcion 2");
+    System.out.println("3. Opcion 3");
+    System.out.println("4. Salir");
+
+    try {
+
+      System.out.println("Escribe una de las opciones");
+      opcion = sn.nextInt();
+
+      switch (opcion) {
+      case 1:
+        loop();
+        break;
+      case 2:
+        loop();
+        break;
+      case 3:
+        loop();
+        break;
+      case 4:
+        loop();
+        break;
+      default:
+        loop();
+      }
+    }
+    catch (InputMismatchException e) {
+      System.out.println("Debes insertar un número");
+      sn.next();
+    }
   }
 }
