@@ -233,7 +233,13 @@ void draw() {
     // Grabar
   case 1:
     background(0);
-    textSize(20);
+    translate(width/2, height/2, -1000);
+    translate(0, 0, 1400);
+    rotateY(rotY);
+    translate(0, 0, s*-1000);
+    scale(s);
+    stroke(255);
+    textSize(40);
 
 
     if ( recorder.isRecording() )
@@ -344,6 +350,7 @@ void draw() {
           if (sonidosLiquidos[k][l].isMuted() )
           {
             sonidosLiquidos[k][l].unmute();
+            println("Play + " + k + " " +l);
           } else
           {
             // simply call loop again to resume playing from where it was paused
