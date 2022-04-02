@@ -40,9 +40,14 @@
  ///////////////////////////////////////////////////
  Instrucciones Líquida V. Kinect.
  
- Teclas de control de camara (MAYUSCULAS):Q W E R T A S D F
+ Teclas de control de camara (MAYUSCULAS): Q W E R T
+ A S D F G
+ 
  Teclas de estados:1 2 3
- Tecla de grabacion: Z
+ Tecla de grabacion:  7 8 9 0
+ U I O P
+ J K L Ñ
+ M , . -
  
  
  NT. La profundidad del rastreo ayuda
@@ -73,7 +78,7 @@ SimpleOpenNI kinect;
 Minim minim;
 //AudioOutput out;
 
-/// inicializando el arreglo de sonidos
+// inicializando el arreglo de sonidos
 AudioPlayer[][] sonidosLiquidos;
 //int cantSonidos = col*row;
 
@@ -86,24 +91,24 @@ AudioSample[] fx;
 String[][] tracks =
   {
   {
-    "A1.mp3", "A2.mp3", "A3.mp3", "A4.mp3"
+    "A1.wav", "A2.wav", "A3.wav", "A4.wav"
   }
   ,
   {
-    "B1.mp3", "B2.mp3", "B3.mp3", "B4.mp3"
+    "B1.wav", "B2.wav", "B3.wav", "B4.wav"
   }
   ,
   {
-    "C1.mp3", "C2.mp3", "C3.mp3", "C4.mp3"
+    "C1.wav", "C2.wav", "C3.wav", "C4.wav"
   }
   ,
   {
-    "D1.mp3", "D2.mp3", "D3.mp3", "D4.mp3"
+    "D1.wav", "D2.wav", "D3.wav", "D4.wav"
   }
 };
 
 String[] tracksFx = {
-  "F1.mp3", "F2.mp3", "F3.mp3", "F4.mp3"
+  "F1.wav", "F2.wav", "F3.wav", "F4.wav"
 };
 
 // arreglo de botones liquida
@@ -147,7 +152,7 @@ int distRetAumento = 20;
 // este es el control del zoom y se hace con "S" y "A"
 float s = 1;
 
-//resolucion de la nube de puntos "M" Y "N"
+// resolucion de la nube de puntos "M" Y "N"
 int pasos = 10;
 
 // Se controla la profundidad de rastreo con "L" y "K"
@@ -157,7 +162,6 @@ int profundidad = 3000;
 
 AudioInput in;
 AudioRecorder recorder;
-recorder = minim.createRecorder(in, "Init.wav");
 
 
 void setup() {
@@ -182,8 +186,9 @@ void setup() {
   minim = new Minim(this);
   in = minim.getLineIn(Minim.STEREO, 44100);
   textFont(createFont("Arial", 30));
+  recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"Test.wav");
 
-  /// inicializar los sonidos del arreglo
+  // inicializar los sonidos del arreglo
 
   sonidosLiquidos = new AudioPlayer [row][col];
 
@@ -192,6 +197,7 @@ void setup() {
     for (int j = 0; j < col; j++)
     {
       sonidosLiquidos[i][j] = minim.loadFile(tracks[i][j], 512);
+      println("cargando sonidos " + tracks[i][j]);
     }
   }
 
@@ -201,6 +207,7 @@ void setup() {
   for (int i = 0; i < cantFx; i++)
   {
     fx[i] = minim.loadSample(tracksFx[i], 512);
+    println("Cargando tracks Fx " + tracksFx[i]);
   }
 
 
@@ -219,30 +226,15 @@ void setup() {
 
 void draw() {
   kinect.update();
-  background(0);
-
-
-  translate(width/2, height/2, -1000);
-  rotateX(rotX);
-
-
-  translate(0, 0, 1400);
-  rotateY(rotY);
-
-  translate(0, 0, s*-1000);
-  scale(s);
-
-  stroke(255);
-
   PVector[] depthPoints = kinect.depthMapRealWorld();
 
   switch(estado) {
 
     // Grabar
   case 1:
-
     background(0);
-    stroke(255);
+    textSize(20);
+
 
     if ( recorder.isRecording() )
     {
@@ -254,8 +246,24 @@ void draw() {
 
     break;
 
-    // Calibar
+    // Calibrar
   case 2:
+
+    background(0);
+
+
+    translate(width/2, height/2, -1000);
+    rotateX(rotX);
+
+
+    translate(0, 0, 1400);
+    rotateY(rotY);
+
+    translate(0, 0, s*-1000);
+    scale(s);
+
+    stroke(255);
+
 
     for (int i = 0; i < depthPoints.length; i+=pasos) {
       PVector currentPoint = depthPoints[i];
@@ -276,6 +284,21 @@ void draw() {
 
     // Play
   case 3:
+    background(0);
+
+
+    translate(width/2, height/2, -1000);
+    rotateX(rotX);
+
+
+    translate(0, 0, 1400);
+    rotateY(rotY);
+
+    translate(0, 0, s*-1000);
+    scale(s);
+
+    stroke(255);
+
 
 
     // beginShape(POINTS);
@@ -395,7 +418,7 @@ void keyPressed() {
     pasos--;
   }
 
-  //PROFUNDIDAD DEL RASTREO DE PUNTOS
+  // Profundidad del rastreo de puntos
 
   if (key == 'R') {
     profundidad =  profundidad+= 100;
@@ -490,6 +513,8 @@ void keyPressed() {
     println("Play + " + estado);
   }
 
+  // Loop
+
   if (key == 'Z') {
     noLoop();
   }
@@ -502,90 +527,90 @@ void keyPressed() {
   // A
   if ( key == '7')
   {
-    recorder = minim.createRecorder(in, "A1.wav");
+    recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"A1.wav");
     recorder.beginRecord();
   }
   if ( key == '8')
   {
-    recorder = minim.createRecorder(in, "A2.wav");
+    recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"A2.wav");
     recorder.beginRecord();
   }
   if ( key == '9')
   {
-    recorder = minim.createRecorder(in, "A3.wav");
+    recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"A3.wav");
     recorder.beginRecord();
   }
 
   if ( key == '0')
   {
-    recorder = minim.createRecorder(in, "A4.wav");
+    recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"A4.wav");
     recorder.beginRecord();
   }
 
   // B
-  if ( key == 'Y')
-  {
-    recorder = minim.createRecorder(in, "B1.wav");
-    recorder.beginRecord();
-  }
   if ( key == 'U')
   {
-    recorder = minim.createRecorder(in, "B2.wav");
+    recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"B1.wav");
     recorder.beginRecord();
   }
   if ( key == 'I')
   {
-    recorder = minim.createRecorder(in, "B3.wav");
+    recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"B2.wav");
+    recorder.beginRecord();
+  }
+  if ( key == 'O')
+  {
+    recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"B3.wav");
     recorder.beginRecord();
   }
 
-  if ( key == 'O')
+  if ( key == 'P')
   {
-    recorder = minim.createRecorder(in, "B4.wav");
+    recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"B4.wav");
     recorder.beginRecord();
   }
 
   //C
-  if ( key == 'H')
-  {
-    recorder = minim.createRecorder(in, "C1.wav");
-    recorder.beginRecord();
-  }
   if ( key == 'J')
   {
-    recorder = minim.createRecorder(in, "C2.wav");
+    recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"C1.wav");
     recorder.beginRecord();
   }
   if ( key == 'K')
   {
-    recorder = minim.createRecorder(in, "C3.wav");
+    recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"C2.wav");
     recorder.beginRecord();
   }
   if ( key == 'L')
   {
-    recorder = minim.createRecorder(in, "C4.wav");
+    recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"C3.wav");
+    recorder.beginRecord();
+  }
+  if ( key == 'Ñ')
+  {
+    recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"C4.wav");
     recorder.beginRecord();
   }
 
   //D
-  if ( key == 'N')
-  {
-    recorder = minim.createRecorder(in, "D1.wav");
-    recorder.beginRecord();
-  }
   if ( key == 'M')
   {
-    recorder = minim.createRecorder(in, "D2.wav");
+    recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"D1.wav");
     recorder.beginRecord();
   }
-  if ( key == ';')
+  if ( key == ',')
   {
-    recorder = minim.createRecorder(in, "D3.wav");
+    recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"D2.wav");
     recorder.beginRecord();
   }
-  if ( key == ':')
+  if ( key == '.')
   {
-    recorder = minim.createRecorder(in, "D4.wav");
+    recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"D3.wav");
+    recorder.beginRecord();
+  }
+  if ( key == '-')
+  {
+    recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"D4.wav");
     recorder.beginRecord();
   }
 }
@@ -621,26 +646,26 @@ void keyReleased() {
   }
 
   // B
-  if ( key == 'Y')
+  if ( key == 'U')
   {
     recorder.endRecord();
     recorder.save();
     println("Save B1");
   }
-  if ( key == 'U')
+  if ( key == 'I')
   {
     recorder.endRecord();
     recorder.save();
     println("Save B2");
   }
-  if ( key == 'I')
+  if ( key == 'O')
   {
     recorder.endRecord();
     recorder.save();
     println("Save B3");
   }
 
-  if ( key == 'O')
+  if ( key == 'P')
   {
     recorder.endRecord();
     recorder.save();
@@ -648,25 +673,25 @@ void keyReleased() {
   }
 
   //C
-  if ( key == 'H')
+  if ( key == 'J')
   {
     recorder.endRecord();
     recorder.save();
     println("Save C1");
   }
-  if ( key == 'J')
+  if ( key == 'K')
   {
     recorder.endRecord();
     recorder.save();
     println("Save C2");
   }
-  if ( key == 'K')
+  if ( key == 'L')
   {
     recorder.endRecord();
     recorder.save();
     println("Save C3");
   }
-  if ( key == 'L')
+  if ( key == 'Ñ')
   {
     recorder.endRecord();
     recorder.save();
@@ -674,25 +699,25 @@ void keyReleased() {
   }
 
   //D
-  if ( key == 'N')
+  if ( key == 'M')
   {
     recorder.endRecord();
     recorder.save();
     println("Save D1");
   }
-  if ( key == 'M')
+  if ( key == ',')
   {
     recorder.endRecord();
     recorder.save();
     println("Save D2");
   }
-  if ( key == ';')
+  if ( key == '.')
   {
     recorder.endRecord();
     recorder.save();
     println("Save D3");
   }
-  if ( key == ':')
+  if ( key == '-')
   {
     recorder.endRecord();
     recorder.save();
