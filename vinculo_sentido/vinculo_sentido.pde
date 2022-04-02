@@ -64,7 +64,7 @@ import processing.opengl.*;
 import SimpleOpenNI.*;
 
 // variable de la maquina de estado
-int estado = 0;
+int estado = 1;
 
 // biblioteca SimplepenNI
 SimpleOpenNI kinect;
@@ -153,7 +153,11 @@ int pasos = 10;
 // Se controla la profundidad de rastreo con "L" y "K"
 int profundidad = 3000;
 
-PImage portadilla;
+// Grabación
+
+AudioInput in;
+AudioRecorder recorder;
+recorder = minim.createRecorder(in, "Init.wav");
 
 
 void setup() {
@@ -176,8 +180,8 @@ void setup() {
 
   // inicializand los minim
   minim = new Minim(this);
-
-
+  in = minim.getLineIn(Minim.STEREO, 44100);
+  textFont(createFont("Arial", 30));
 
   /// inicializar los sonidos del arreglo
 
@@ -234,13 +238,24 @@ void draw() {
 
   switch(estado) {
 
-  case 0:
+    // Grabar
+  case 1:
 
-    println("menu + " + estado);
+    background(0);
+    stroke(255);
+
+    if ( recorder.isRecording() )
+    {
+      text("Currently recording...", 5, 15);
+    } else
+    {
+      text("Not recording.", 5, 15);
+    }
 
     break;
 
-  case 1:
+    // Calibar
+  case 2:
 
     for (int i = 0; i < depthPoints.length; i+=pasos) {
       PVector currentPoint = depthPoints[i];
@@ -259,7 +274,8 @@ void draw() {
 
     break;
 
-  case 2:
+    // Play
+  case 3:
 
 
     // beginShape(POINTS);
@@ -459,19 +475,19 @@ void keyPressed() {
   }
 
   //controles de los estados
-  if (key == '0') {
-    estado = 0;
-    println("estado + " + estado);
-  }
-
   if (key == '1') {
     estado = 1;
-    println("estado + " + estado);
+    println("Grabar + " + estado);
   }
 
   if (key == '2') {
     estado = 2;
-    println("estado + " + estado);
+    println("Calibrar + " + estado);
+  }
+
+  if (key == '3') {
+    estado = 3;
+    println("Play + " + estado);
   }
 
   if (key == 'Z') {
@@ -480,46 +496,206 @@ void keyPressed() {
   if (key == 'X') {
     loop();
   }
+
+
+  // Grabación
+  // A
+  if ( key == '7')
+  {
+    recorder = minim.createRecorder(in, "A1.wav");
+    recorder.beginRecord();
+  }
+  if ( key == '8')
+  {
+    recorder = minim.createRecorder(in, "A2.wav");
+    recorder.beginRecord();
+  }
+  if ( key == '9')
+  {
+    recorder = minim.createRecorder(in, "A3.wav");
+    recorder.beginRecord();
+  }
+
+  if ( key == '0')
+  {
+    recorder = minim.createRecorder(in, "A4.wav");
+    recorder.beginRecord();
+  }
+
+  // B
+  if ( key == 'Y')
+  {
+    recorder = minim.createRecorder(in, "B1.wav");
+    recorder.beginRecord();
+  }
+  if ( key == 'U')
+  {
+    recorder = minim.createRecorder(in, "B2.wav");
+    recorder.beginRecord();
+  }
+  if ( key == 'I')
+  {
+    recorder = minim.createRecorder(in, "B3.wav");
+    recorder.beginRecord();
+  }
+
+  if ( key == 'O')
+  {
+    recorder = minim.createRecorder(in, "B4.wav");
+    recorder.beginRecord();
+  }
+
+  //C
+  if ( key == 'H')
+  {
+    recorder = minim.createRecorder(in, "C1.wav");
+    recorder.beginRecord();
+  }
+  if ( key == 'J')
+  {
+    recorder = minim.createRecorder(in, "C2.wav");
+    recorder.beginRecord();
+  }
+  if ( key == 'K')
+  {
+    recorder = minim.createRecorder(in, "C3.wav");
+    recorder.beginRecord();
+  }
+  if ( key == 'L')
+  {
+    recorder = minim.createRecorder(in, "C4.wav");
+    recorder.beginRecord();
+  }
+
+  //D
+  if ( key == 'N')
+  {
+    recorder = minim.createRecorder(in, "D1.wav");
+    recorder.beginRecord();
+  }
+  if ( key == 'M')
+  {
+    recorder = minim.createRecorder(in, "D2.wav");
+    recorder.beginRecord();
+  }
+  if ( key == ';')
+  {
+    recorder = minim.createRecorder(in, "D3.wav");
+    recorder.beginRecord();
+  }
+  if ( key == ':')
+  {
+    recorder = minim.createRecorder(in, "D4.wav");
+    recorder.beginRecord();
+  }
 }
 
+void keyReleased() {
 
-void menu() {
-  Scanner sn = new Scanner(System.in);
-  boolean salir = false;
-  int opcion; //Guardaremos la opcion del usuario
+  // Grabación
+  // A
+  if ( key == '7')
+  {
+    recorder.endRecord();
+    recorder.save();
+    println("Save A1");
+  }
+  if ( key == '8')
+  {
+    recorder.endRecord();
+    recorder.save();
+    println("Save A2");
+  }
+  if ( key == '9')
+  {
+    recorder.endRecord();
+    recorder.save();
+    println("Save A3");
+  }
 
-  while (!salir) {
+  if ( key == '0')
+  {
+    recorder.endRecord();
+    recorder.save();
+    println("Save A4");
+  }
 
-    System.out.println("1. Opcion 1");
-    System.out.println("2. Opcion 2");
-    System.out.println("3. Opcion 3");
-    System.out.println("4. Salir");
+  // B
+  if ( key == 'Y')
+  {
+    recorder.endRecord();
+    recorder.save();
+    println("Save B1");
+  }
+  if ( key == 'U')
+  {
+    recorder.endRecord();
+    recorder.save();
+    println("Save B2");
+  }
+  if ( key == 'I')
+  {
+    recorder.endRecord();
+    recorder.save();
+    println("Save B3");
+  }
 
-    try {
+  if ( key == 'O')
+  {
+    recorder.endRecord();
+    recorder.save();
+    println("Save B4");
+  }
 
-      System.out.println("Escribe una de las opciones");
-      opcion = sn.nextInt();
+  //C
+  if ( key == 'H')
+  {
+    recorder.endRecord();
+    recorder.save();
+    println("Save C1");
+  }
+  if ( key == 'J')
+  {
+    recorder.endRecord();
+    recorder.save();
+    println("Save C2");
+  }
+  if ( key == 'K')
+  {
+    recorder.endRecord();
+    recorder.save();
+    println("Save C3");
+  }
+  if ( key == 'L')
+  {
+    recorder.endRecord();
+    recorder.save();
+    println("Save C4");
+  }
 
-      switch (opcion) {
-      case 1:
-        loop();
-        break;
-      case 2:
-        loop();
-        break;
-      case 3:
-        loop();
-        break;
-      case 4:
-        loop();
-        break;
-      default:
-        loop();
-      }
-    }
-    catch (InputMismatchException e) {
-      System.out.println("Debes insertar un número");
-      sn.next();
-    }
+  //D
+  if ( key == 'N')
+  {
+    recorder.endRecord();
+    recorder.save();
+    println("Save D1");
+  }
+  if ( key == 'M')
+  {
+    recorder.endRecord();
+    recorder.save();
+    println("Save D2");
+  }
+  if ( key == ';')
+  {
+    recorder.endRecord();
+    recorder.save();
+    println("Save D3");
+  }
+  if ( key == ':')
+  {
+    recorder.endRecord();
+    recorder.save();
+    println("Save D4");
   }
 }
