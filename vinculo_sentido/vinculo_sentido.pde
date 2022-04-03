@@ -134,17 +134,17 @@ float rotX = radians(165);
 float rotY = radians(0);
 
 // elevacion inicial
-int elevacion =100;
+int elevacion =200;
 
 // rango de aumento para ajustar la elevacion
 int aumentoElev = 10;
 
 
 //dimensiones del boton
-int tamano = 550;
+int tamano = 430;
 
 //distancia de la camara al inicio de la reticula
-int distRet = 2000;
+int distRet = 1800;
 
 // pasos de juste de la reticula a liquida
 int distRetAumento = 10;
@@ -165,7 +165,7 @@ AudioRecorder recorder;
 
 void setup() {
   // se inicializa el back gorund y la kinect
-  size(1024, 768, P3D);
+  size(800, 600, P3D);
 
   kinect = new SimpleOpenNI(this);
   if (kinect.isInit() == false)
@@ -429,9 +429,6 @@ void keyPressed() {
   if (key == 'c') {
     tamano = tamano - 10;
     println("Tamaño + " + tamano);
-
-    botLiq = new Hotpoint[col][row];
-
     for (int k = 0; k < row; k++)
     {
       for (int l = 0; l < col; l++)
@@ -443,8 +440,6 @@ void keyPressed() {
   if (key == 'v') {
     tamano = tamano + 10;
     println("Tamaño + " + tamano);
-
-    botLiq = new Hotpoint[col][row];
 
     for (int k = 0; k < row; k++)
     {
