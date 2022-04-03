@@ -457,7 +457,7 @@ void keyPressed() {
     }
   }
   if (key == 'v') {
-    tamano = tamano + 100;
+    tamano = tamano + 10;
     println("Tamaño + " + tamano);
    
     botLiq = new Hotpoint[col][row];
