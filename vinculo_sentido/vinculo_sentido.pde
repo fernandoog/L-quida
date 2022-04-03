@@ -314,10 +314,8 @@ void draw() {
     text("Not recording.", 5, 15);
   }
   //termina el switch
-}
-
-// draw the kinect cam
-kinect.drawCamFrustum();
+  // draw the kinect cam
+  kinect.drawCamFrustum();
 }
 
 
