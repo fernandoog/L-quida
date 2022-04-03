@@ -52,7 +52,7 @@
  J K L Ñ
  M , . -
  
- Tecla de pausa conmtinuar:
+ Tecla delay:
  Z X
  
  
@@ -164,7 +164,8 @@ int pasos = 10;
 // Se controla la profundidad de rastreo con "L" y "K"
 int profundidad = 3000;
 
-// Grabación
+// Delay Z y X
+float delay = 100;
 
 AudioInput in;
 AudioRecorder recorder;
@@ -293,7 +294,7 @@ void draw() {
       // aqui se puede anexar un solo sonido que pueda corresponder a una accion constante como caminar
       if (botLiq[k][l].isHit())
       {
-        delay(100);
+        delay(delay);
         sonidosLiquidos[k][l].trigger();
       }
     }
@@ -428,10 +429,10 @@ void keyPressed() {
   // Loop
 
   if (key == 'z') {
-    noLoop();
+    delay = delay - 10;
   }
   if (key == 'x') {
-    loop();
+    delay = delay + 10;
   }
 
 
