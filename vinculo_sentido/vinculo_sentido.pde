@@ -134,7 +134,7 @@ float rotX = radians(165);
 float rotY = radians(0);
 
 // elevacion inicial
-int elevacion =100;
+int elevacion =220;
 
 // rango de aumento para ajustar la elevacion
 int aumentoElev = 10;
@@ -144,7 +144,7 @@ int aumentoElev = 10;
 int tamano = 500;
 
 //distancia de la camara al inicio de la reticula
-int distRet = 1000;
+int distRet = 0;
 
 // pasos de juste de la reticula a liquida
 int distRetAumento = 10;
