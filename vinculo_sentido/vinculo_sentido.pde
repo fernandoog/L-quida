@@ -134,17 +134,17 @@ float rotX = radians(165);
 float rotY = radians(0);
 
 // elevacion inicial
-int elevacion =220;
+int elevacion =100;
 
 // rango de aumento para ajustar la elevacion
 int aumentoElev = 10;
 
 
 //dimensiones del boton
-int tamano = 500;
+int tamano = 550;
 
 //distancia de la camara al inicio de la reticula
-int distRet = 1700;
+int distRet = 1000;
 
 // pasos de juste de la reticula a liquida
 int distRetAumento = 10;
