@@ -679,13 +679,13 @@ void keyReleased() {
 void mouseDragged() {
 
 
-  if ((mouseY-pmouseY) >= 0) {
+  if ((mouseY-pmouseX) >= 0) {
     rotY-=0.001;
   } else {
     rotY+=0.001;
   }
 
-  if ((mouseX-pmouseX) >= 0) {
+  if ((mouseX-pmouseY) >= 0) {
     rotX-=0.001;
   } else {
     rotX+=0.001;
