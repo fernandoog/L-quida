@@ -40,11 +40,13 @@
  ///////////////////////////////////////////////////
  Instrucciones Líquida V. Kinect.
  
- Teclas de control de camara (MAYUSCULAS): Q W E R T
+ Teclas de control de camara (MAYUSCULAS): 
+ Q W E R T
  A S D F G
  
- Teclas de estados:1 2 3
- Tecla de grabacion:  7 8 9 0
+ Teclas de estados:1 2
+ Tecla de grabacion:    
+ 7 8 9 0
  U I O P
  J K L Ñ
  M , . -
@@ -184,7 +186,7 @@ void setup() {
 
   // inicializand los minim
   minim = new Minim(this);
-  in = minim.getLineIn(Minim.STEREO, 44100);
+  in = minim.getLineIn(Minim.STEREO, 512);
   textFont(createFont("Arial", 30));
   recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"Test.wav");
 
