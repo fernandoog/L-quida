@@ -177,7 +177,7 @@ void setup() {
   }
 
   //espejea la imagen
-  kinect.setMirror(false);
+  kinect.setMirror(true);
 
   //se autoriza la vision de profundidad
   kinect.enableDepth();
@@ -403,12 +403,12 @@ void keyPressed() {
   //controles de la nube de puntos
 
   // resolucion
-  if (key == 'T') {
+  if (key == 't') {
     pasos++;
     println("resolucion + " + pasos);
   }
 
-  if (key == 'G') {
+  if (key == 'g') {
     if (pasos<=3) {
       pasos = 3;
       println("resolucion - " + pasos);
@@ -419,11 +419,11 @@ void keyPressed() {
 
   // Profundidad del rastreo de puntos
 
-  if (key == 'R') {
+  if (key == 'r') {
     profundidad =  profundidad+= 100;
     println("profundidad + " + profundidad);
   }
-  if (key == 'F') {
+  if (key == 'f') {
     profundidad =  profundidad-= 100;
     println("profundidad - " + profundidad);
   }
@@ -432,7 +432,7 @@ void keyPressed() {
 
 
   // estos son para subir y bajar la reticula
-  if (key == 'E')
+  if (key == 'e')
   {
     for (int k = 0; k < col; k++)
     {
@@ -443,7 +443,7 @@ void keyPressed() {
       }
     }
   }
-  if (key == 'D')
+  if (key == 'd')
   {
     for (int k = 0; k < col; k++)
     {
@@ -457,7 +457,7 @@ void keyPressed() {
 
   // estos son para alejarla y acercarla a liquida
 
-  if (key == 'W')
+  if (key == 'w')
   {
     distRet += 50;
     for (int k = 0; k < col; k++)
@@ -469,7 +469,7 @@ void keyPressed() {
       }
     }
   }
-  if (key == 'S')
+  if (key == 's')
   {
     distRet -= 50;
     for (int k = 0; k < col; k++)
@@ -485,12 +485,12 @@ void keyPressed() {
   //controles de camara
 
   // zoom
-  if (key == 'A') {
+  if (key == 'a') {
     s = s+ 0.01;
     println("zoom + " + s);
   }
 
-  if (key == 'Q') {
+  if (key == 'q') {
 
     s = s - 0.01;
     println("zoom - " + s);
@@ -514,10 +514,10 @@ void keyPressed() {
 
   // Loop
 
-  if (key == 'Z') {
+  if (key == 'z') {
     noLoop();
   }
-  if (key == 'X') {
+  if (key == 'x') {
     loop();
   }
 
@@ -547,52 +547,52 @@ void keyPressed() {
   }
 
   // B
-  if ( key == 'U')
+  if ( key == 'u')
   {
     recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"B1.wav");
     recorder.beginRecord();
   }
-  if ( key == 'I')
+  if ( key == 'i')
   {
     recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"B2.wav");
     recorder.beginRecord();
   }
-  if ( key == 'O')
+  if ( key == 'o')
   {
     recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"B3.wav");
     recorder.beginRecord();
   }
 
-  if ( key == 'P')
+  if ( key == 'p')
   {
     recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"B4.wav");
     recorder.beginRecord();
   }
 
   //C
-  if ( key == 'J')
+  if ( key == 'j')
   {
     recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"C1.wav");
     recorder.beginRecord();
   }
-  if ( key == 'K')
+  if ( key == 'k')
   {
     recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"C2.wav");
     recorder.beginRecord();
   }
-  if ( key == 'L')
+  if ( key == 'l')
   {
     recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"C3.wav");
     recorder.beginRecord();
   }
-  if ( key == 'Ñ')
+  if ( key == 'ñ')
   {
     recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"C4.wav");
     recorder.beginRecord();
   }
 
   //D
-  if ( key == 'M')
+  if ( key == 'm')
   {
     recorder = minim.createRecorder(in, "data"+ System.getProperty("file.separator")+"D1.wav");
     recorder.beginRecord();
@@ -645,26 +645,26 @@ void keyReleased() {
   }
 
   // B
-  if ( key == 'U')
+  if ( key == 'u')
   {
     recorder.endRecord();
     recorder.save();
     println("Save B1");
   }
-  if ( key == 'I')
+  if ( key == 'i')
   {
     recorder.endRecord();
     recorder.save();
     println("Save B2");
   }
-  if ( key == 'O')
+  if ( key == 'o')
   {
     recorder.endRecord();
     recorder.save();
     println("Save B3");
   }
 
-  if ( key == 'P')
+  if ( key == 'p')
   {
     recorder.endRecord();
     recorder.save();
@@ -672,25 +672,25 @@ void keyReleased() {
   }
 
   //C
-  if ( key == 'J')
+  if ( key == 'j')
   {
     recorder.endRecord();
     recorder.save();
     println("Save C1");
   }
-  if ( key == 'K')
+  if ( key == 'k')
   {
     recorder.endRecord();
     recorder.save();
     println("Save C2");
   }
-  if ( key == 'L')
+  if ( key == 'l')
   {
     recorder.endRecord();
     recorder.save();
     println("Save C3");
   }
-  if ( key == 'Ñ')
+  if ( key == 'ñ')
   {
     recorder.endRecord();
     recorder.save();
@@ -698,7 +698,7 @@ void keyReleased() {
   }
 
   //D
-  if ( key == 'M')
+  if ( key == 'm')
   {
     recorder.endRecord();
     recorder.save();
