@@ -91,11 +91,7 @@ AudioPlayer[] fx;
 String[][] tracks =
   {
   {
-    "A1.wav", "B1.wav", "C1.wav", "D1.wav"
-  }
-  ,
-  {
-    "A2.wav", "B2.wav", "C2.wav", "D2.wav"
+    "A4.wav", "B4.wav", "C4.wav", "D4.wav"
   }
   ,
   {
@@ -103,7 +99,11 @@ String[][] tracks =
   }
   ,
   {
-    "A4.wav", "B4.wav", "C4.wav", "D4.wav"
+    "A2.wav", "B2.wav", "C2.wav", "D2.wav"
+  }
+  ,
+  {
+    "A1.wav", "B1.wav", "C1.wav", "D1.wav"
   }
 };
 
