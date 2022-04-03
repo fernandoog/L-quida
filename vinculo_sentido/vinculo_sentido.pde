@@ -133,17 +133,11 @@ int col = 4;
 float rotX = radians(165);
 float rotY = radians(0);
 
-
-
-
-// ALTURA DE LA RETICULA
-// lo manejamos con las letras 'U' e 'I'
-
 // elevacion inicial
 int elevacion =100;
 
 // rango de aumento para ajustar la elevacion
-int aumentoElev = 150;
+int aumentoElev = 10;
 
 
 //dimensiones del boton
@@ -156,11 +150,11 @@ int distRet = 1000;
 int distRetAumento = 10;
 
 // Zoom
-float s = 1.20;
+float s = 0.90;
 
-int pasos = 7;
+int pasos = 1;
 
-int profundidad = 5000;
+int profundidad = 3000;
 
 // Delay Z y X
 int delay = 50;
@@ -408,12 +402,12 @@ void keyPressed() {
   //controles de camara
 
   // zoom
-  if (key == 'a') {
+  if (key == 'q') {
     s = s+ 0.01;
     println("zoom + " + s);
   }
 
-  if (key == 'q') {
+  if (key == 'a') {
 
     s = s - 0.01;
     println("zoom - " + s);
