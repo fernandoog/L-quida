@@ -433,22 +433,42 @@ void keyPressed() {
 
   if (key == 'z') {
     delay = delay - 10;
-     println("Delay + " + delay);
+    println("Delay + " + delay);
   }
   if (key == 'x') {
     delay = delay + 10;
-     println("Delay + " + delay);
+    println("Delay + " + delay);
   }
-  
-   // Loop
+
+  // Loop
 
   if (key == 'c') {
     tamano = tamano - 100;
-     println("Tamaño + " + tamano);
+    println("Tamaño + " + tamano);
+
+    botLiq = new Hotpoint[col][row];
+
+    for (int k = 0; k < row; k++)
+    {
+      for (int l = 0; l < col; l++)
+      {
+        botLiq[k][l] = new Hotpoint((tamano*(col/2)-tamano/2)-(k*tamano), elevacion, distRet+l*tamano, tamano);
+      }
+    }
   }
   if (key == 'v') {
     tamano = tamano + 100;
-     println("Tamaño + " + tamano);
+    println("Tamaño + " + tamano);
+   
+    botLiq = new Hotpoint[col][row];
+
+    for (int k = 0; k < row; k++)
+    {
+      for (int l = 0; l < col; l++)
+      {
+        botLiq[k][l] = new Hotpoint((tamano*(col/2)-tamano/2)-(k*tamano), elevacion, distRet+l*tamano, tamano);
+      }
+    }
   }
 
 
