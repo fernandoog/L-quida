@@ -52,8 +52,11 @@
  J K L Ñ
  M , . -
  
- Tecla delay:
+ Teclas delay:
  Z X
+ 
+ Teclas tamaño:
+ C V
  
  
  NT. La profundidad del rastreo ayuda
@@ -430,10 +433,24 @@ void keyPressed() {
 
   if (key == 'z') {
     delay = delay - 10;
+     println("Delay + " + delay);
   }
   if (key == 'x') {
     delay = delay + 10;
+     println("Delay + " + delay);
   }
+  
+   // Loop
+
+  if (key == 'c') {
+    tamano = tamano - 10;
+     println("Tamaño + " + delay);
+  }
+  if (key == 'v') {
+    tamano = tamano + 10;
+     println("Tamaño + " + delay);
+  }
+
 
 
   // Grabación
