@@ -130,7 +130,7 @@ int col = 4;
 
 ////contrones de camara
 
-float rotX = radians(180);
+float rotX = radians(155);
 float rotY = radians(0);
 
 
@@ -679,13 +679,13 @@ void keyReleased() {
 void mouseDragged() {
 
 
-  if ((mouseY-pmouseX) >= 0) {
+  if ((mouseY-pmouseY) != 0) {
     rotY-=0.001;
   } else {
     rotY+=0.001;
   }
 
-  if ((mouseX-pmouseY) >= 0) {
+  if ((mouseX-pmouseX) != 0) {
     rotX-=0.001;
   } else {
     rotX+=0.001;
