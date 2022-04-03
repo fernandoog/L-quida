@@ -443,12 +443,12 @@ void keyPressed() {
    // Loop
 
   if (key == 'c') {
-    tamano = tamano - 10;
-     println("Tamaño + " + delay);
+    tamano = tamano - 100;
+     println("Tamaño + " + tamano);
   }
   if (key == 'v') {
-    tamano = tamano + 10;
-     println("Tamaño + " + delay);
+    tamano = tamano + 100;
+     println("Tamaño + " + tamano);
   }
 
 
