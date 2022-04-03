@@ -147,25 +147,20 @@ int aumentoElev = 10;
 
 
 //dimensiones del boton
-int tamano = 600;
+int tamano = 700;
 
 //distancia de la camara al inicio de la reticula
-
-// lo manejamos con las letras  'G' y 'H'
-int distRet = 1200;
+int distRet = 1000;
 
 // pasos de juste de la reticula a liquida
-int distRetAumento = 20;
+int distRetAumento = 10;
 
-
-// este es el control del zoom y se hace con "S" y "A"
+// Zoom
 float s = 1;
 
-// resolucion de la nube de puntos "M" Y "N"
 int pasos = 7;
 
-// Se controla la profundidad de rastreo con "L" y "K"
-int profundidad = 3000;
+int profundidad = 5000;
 
 // Delay Z y X
 int delay = 50;
