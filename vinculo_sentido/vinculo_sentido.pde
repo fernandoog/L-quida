@@ -443,7 +443,7 @@ void keyPressed() {
   // Loop
 
   if (key == 'c') {
-    tamano = tamano - 100;
+    tamano = tamano - 10;
     println("Tamaño + " + tamano);
 
     botLiq = new Hotpoint[col][row];
