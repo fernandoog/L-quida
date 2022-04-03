@@ -144,7 +144,7 @@ int aumentoElev = 10;
 int tamano = 500;
 
 //distancia de la camara al inicio de la reticula
-int distRet = 0;
+int distRet = 2550;
 
 // pasos de juste de la reticula a liquida
 int distRetAumento = 10;
