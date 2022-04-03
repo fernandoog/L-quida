@@ -680,15 +680,15 @@ void mouseDragged() {
 
 
   if ((mouseY-pmouseY) >= 0) {
-    rotX-=0.05;
+    rotY-=0.001;
   } else {
-    rotX+=0.05;
+    rotY+=0.001;
   }
 
   if ((mouseX-pmouseX) >= 0) {
-    rotY-=0.1;
+    rotX-=0.001;
   } else {
-    rotY+=0.1;
+    rotX+=0.001;
   }
    println("Vista " + rotX + " " + rotY);
 }
