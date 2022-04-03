@@ -201,6 +201,8 @@ void setup() {
     }
   }
 
+  //sonidosLiquidos[0][0].play();
+  //delay(sonidosLiquidos[0][0].length());
   // se inicilizan los fx
 
   fx = new AudioSample[cantFx];
@@ -209,7 +211,9 @@ void setup() {
     fx[i] = minim.loadSample(tracksFx[i], 512);
     println("Cargando tracks Fx " + tracksFx[i]);
   }
-
+  
+  //fx[0].trigger();
+  //delay(sonidosLiquidos[0][0].length());
 
   // se inicializan los botones
 
