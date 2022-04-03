@@ -79,13 +79,13 @@ Minim minim;
 //AudioOutput out;
 
 // inicializando el arreglo de sonidos
-AudioPlayer[][] sonidosLiquidos;
+AudioSample[][] sonidosLiquidos;
 //int cantSonidos = col*row;
 
 //estos son los sonidos de efectos como la caminada
 
 int cantFx = 4;
-AudioSample[] fx;
+AudioPlayer[] fx;
 
 // arreglo de strings de los nombres de los archivos de audio
 String[][] tracks =
@@ -190,13 +190,13 @@ void setup() {
 
   // inicializar los sonidos del arreglo
 
-  sonidosLiquidos = new AudioPlayer [row][col];
+  sonidosLiquidos = new AudioSample [row][col];
 
   for (int i = 0; i < row; i++)
   {
     for (int j = 0; j < col; j++)
     {
-      sonidosLiquidos[i][j] = minim.loadFile(tracks[i][j], 512);
+      sonidosLiquidos[i][j] = minim.loadSample(tracks[i][j], 512);
       println("cargando sonidos " + tracks[i][j]);
     }
   }
@@ -205,13 +205,13 @@ void setup() {
   //delay(sonidosLiquidos[0][0].length());
   // se inicilizan los fx
 
-  fx = new AudioSample[cantFx];
+  fx = new AudioPlayer[cantFx];
   for (int i = 0; i < cantFx; i++)
   {
-    fx[i] = minim.loadSample(tracksFx[i], 512);
+    fx[i] = minim.loadFile(tracksFx[i], 512);
     println("Cargando tracks Fx " + tracksFx[i]);
   }
-  
+
   //fx[0].trigger();
   //delay(sonidosLiquidos[0][0].length());
 
@@ -350,19 +350,7 @@ void draw() {
         // aqui se puede anexar un solo sonido que pueda corresponder a una accion constante como caminar
         if (botLiq[k][l].isHit())
         {
-          //sonidosLiquidos[k][l].loop();
-          if (sonidosLiquidos[k][l].isMuted() )
-          {
-            sonidosLiquidos[k][l].unmute();
-            println("Play + " + k + " " +l);
-          } else
-          {
-            // simply call loop again to resume playing from where it was paused
-            sonidosLiquidos[k][l].mute();
-          }
-
-
-          fx[0].trigger();
+          sonidosLiquidos[k][l].trigger();
         }
       }
     }
