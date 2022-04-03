@@ -44,12 +44,16 @@
  Q W E R T
  A S D F G
  
- Teclas de estados:1 2
- Tecla de grabacion:
+ Tecla de recarga: 1
+ 
+ Teclas de grabacion:
  7 8 9 0
  U I O P
  J K L Ñ
  M , . -
+ 
+ Tecla de pausa conmtinuar:
+ Z X
  
  
  NT. La profundidad del rastreo ayuda
@@ -304,15 +308,6 @@ void draw() {
       botLiq[k][l].clear();
     }
   }
-
-
-  if ( recorder.isRecording() )
-  {
-    text("Currently recording...", 5, 15);
-  } else
-  {
-    text("Not recording.", 5, 15);
-  }
   //termina el switch
   // draw the kinect cam
   kinect.drawCamFrustum();
@@ -426,27 +421,8 @@ void keyPressed() {
   }
 
   if (key == '1') {
-    estado = 2;
     println("Recargando + " + estado);
-    // inicializar los sonidos del arreglo
-
-    sonidosLiquidos = new AudioSample [row][col];
-
-    for (int i = 0; i < row; i++)
-    {
-      for (int j = 0; j < col; j++)
-      {
-        sonidosLiquidos[i][j] = minim.loadSample(tracks[i][j], 512);
-        println("cargando sonidos " + tracks[i][j]);
-      }
-    }
-
-    fx = new AudioPlayer[cantFx];
-    for (int i = 0; i < cantFx; i++)
-    {
-      fx[i] = minim.loadFile(tracksFx[i], 512);
-      println("Cargando tracks Fx " + tracksFx[i]);
-    }
+    reload();
   }
 
   // Loop
@@ -675,5 +651,25 @@ void mouseDragged() {
     rotY+=0.1;
   } else {
     rotY-=0.1;
+  }
+}
+
+void reload() {
+  sonidosLiquidos = new AudioSample [row][col];
+
+  for (int i = 0; i < row; i++)
+  {
+    for (int j = 0; j < col; j++)
+    {
+      sonidosLiquidos[i][j] = minim.loadSample(tracks[i][j], 512);
+      println("cargando sonidos " + tracks[i][j]);
+    }
+  }
+
+  fx = new AudioPlayer[cantFx];
+  for (int i = 0; i < cantFx; i++)
+  {
+    fx[i] = minim.loadFile(tracksFx[i], 512);
+    println("Cargando tracks Fx " + tracksFx[i]);
   }
 }
