@@ -141,10 +141,10 @@ int aumentoElev = 10;
 
 
 //dimensiones del boton
-int tamano = 510;
+int tamano = 410;
 
 //distancia de la camara al inicio de la reticula
-int distRet = 1000;
+int distRet = 2500;
 
 // pasos de juste de la reticula a liquida
 int distRetAumento = 10;
@@ -152,9 +152,9 @@ int distRetAumento = 10;
 // Zoom
 float s = 0.90;
 
-int pasos = 1;
+int pasos = 7;
 
-int profundidad = 3000;
+int profundidad = 8000;
 
 // Delay Z y X
 int delay = 50;
@@ -326,8 +326,8 @@ void keyPressed() {
   }
 
   if (key == 'g') {
-    if (pasos<=3) {
-      pasos--;
+    if (pasos<=1) {
+      pasos = 1;
       println("resolucion - " + pasos);
     }
 
