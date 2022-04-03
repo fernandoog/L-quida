@@ -91,19 +91,19 @@ AudioPlayer[] fx;
 String[][] tracks =
   {
   {
-    "A1.wav", "A2.wav", "A3.wav", "A4.wav"
+    "A4.wav", "A3.wav", "A2.wav", "A1.wav"
   }
   ,
   {
-    "B1.wav", "B2.wav", "B3.wav", "B4.wav"
+    "B4.wav", "B3.wav", "B2.wav", "B1.wav"
   }
   ,
   {
-    "C1.wav", "C2.wav", "C3.wav", "C4.wav"
+    "C4.wav", "C3.wav", "C2.wav", "C1.wav"
   }
   ,
   {
-    "D1.wav", "D2.wav", "D3.wav", "D4.wav"
+    "D4.wav", "D3.wav", "D2.wav", "D1.wav"
   }
 };
 
@@ -259,42 +259,7 @@ void draw() {
     // Calibrar
   case 2:
 
-    background(0);
-
-
-    translate(width/2, height/2, -1000);
-    rotateX(rotX);
-
-
-    translate(0, 0, 1400);
-    rotateY(rotY);
-
-    translate(0, 0, s*-1000);
-    scale(s);
-
-    stroke(255);
-
-
-    for (int i = 0; i < depthPoints.length; i+=pasos) {
-      PVector currentPoint = depthPoints[i];
-      if (currentPoint.z < profundidad)
-        point(currentPoint.x, currentPoint.y, currentPoint.z);
-      //vertex(currentPoint.x, currentPoint.y, currentPoint.z);
-    }
-
-    for (int i = 0; i < row; i++)
-    {
-      for (int j = 0; j < col; j++)
-      {
-        sonidosLiquidos[i][j].mute();
-      }
-    }
-
-    break;
-
-    // Play
-  case 3:
-    background(0);
+   background(0);
 
 
     translate(width/2, height/2, -1000);
@@ -367,7 +332,6 @@ void draw() {
 
 
     break;
-
 
     // cualquier otra entrada solo sigue dibujando la nube de puntos
   default:
