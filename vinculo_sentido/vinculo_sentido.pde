@@ -137,14 +137,14 @@ float rotY = radians(0);
 // lo manejamos con las letras 'U' e 'I'
 
 // elevacion inicial
-int elevacion =0;
+int elevacion =100;
 
 // rango de aumento para ajustar la elevacion
-int aumentoElev = 100;
+int aumentoElev = 10;
 
 
 //dimensiones del boton
-int tamano = 500;
+int tamano = 600;
 
 //distancia de la camara al inicio de la reticula
 
@@ -165,7 +165,7 @@ int pasos = 10;
 int profundidad = 3000;
 
 // Delay Z y X
-float delay = 100;
+int delay = 100;
 
 AudioInput in;
 AudioRecorder recorder;
