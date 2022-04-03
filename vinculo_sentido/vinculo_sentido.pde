@@ -147,12 +147,12 @@ int aumentoElev = 10;
 
 
 //dimensiones del boton
-int tamano = 400;
+int tamano = 600;
 
 //distancia de la camara al inicio de la reticula
 
 // lo manejamos con las letras  'G' y 'H'
-int distRet = 2000;
+int distRet = 1200;
 
 // pasos de juste de la reticula a liquida
 int distRetAumento = 20;
@@ -162,10 +162,10 @@ int distRetAumento = 20;
 float s = 1;
 
 // resolucion de la nube de puntos "M" Y "N"
-int pasos = 10;
+int pasos = 7;
 
 // Se controla la profundidad de rastreo con "L" y "K"
-int profundidad = 1500;
+int profundidad = 3000;
 
 // Delay Z y X
 int delay = 50;
@@ -690,6 +690,7 @@ void mouseDragged() {
   } else {
     rotY+=0.1;
   }
+   println("Vista " + rotX + " " + rotY);
 }
 
 void reload() {
