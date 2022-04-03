@@ -143,11 +143,11 @@ float rotY = radians(0);
 int elevacion =100;
 
 // rango de aumento para ajustar la elevacion
-int aumentoElev = 10;
+int aumentoElev = 150;
 
 
 //dimensiones del boton
-int tamano = 700;
+int tamano = 510;
 
 //distancia de la camara al inicio de la reticula
 int distRet = 1000;
@@ -156,7 +156,7 @@ int distRet = 1000;
 int distRetAumento = 10;
 
 // Zoom
-float s = 1;
+float s = 1.20;
 
 int pasos = 7;
 
@@ -333,7 +333,7 @@ void keyPressed() {
 
   if (key == 'g') {
     if (pasos<=3) {
-      pasos = 3;
+      pasos--;
       println("resolucion - " + pasos);
     }
 
@@ -344,11 +344,11 @@ void keyPressed() {
 
   if (key == 'r') {
     profundidad =  profundidad+= 100;
-    println("profundidad + " + profundidad);
+    println("prof + " + profundidad);
   }
   if (key == 'f') {
     profundidad =  profundidad-= 100;
-    println("profundidad - " + profundidad);
+    println("prof - " + profundidad);
   }
 
   // controles de ubicacion de los botones
