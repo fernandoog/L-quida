@@ -40,12 +40,12 @@
  ///////////////////////////////////////////////////
  Instrucciones Líquida V. Kinect.
  
- Teclas de control de camara (MAYUSCULAS): 
+ Teclas de control de camara (MAYUSCULAS):
  Q W E R T
  A S D F G
  
  Teclas de estados:1 2
- Tecla de grabacion:    
+ Tecla de grabacion:
  7 8 9 0
  U I O P
  J K L Ñ
@@ -145,7 +145,7 @@ int tamano = 500;
 //distancia de la camara al inicio de la reticula
 
 // lo manejamos con las letras  'G' y 'H'
-int distRet = 3400;
+int distRet = 1500;
 
 // pasos de juste de la reticula a liquida
 int distRetAumento = 20;
@@ -234,126 +234,90 @@ void draw() {
   kinect.update();
   PVector[] depthPoints = kinect.depthMapRealWorld();
 
-  switch(estado) {
 
-    // Grabar
-  case 1:
-    background(0);
-    translate(width/2, height/2, -1000);
-    translate(0, 0, 1400);
-    rotateY(rotY);
-    translate(0, 0, s*-1000);
-    scale(s);
-    stroke(255);
-    textSize(40);
+  background(0);
 
 
-    if ( recorder.isRecording() )
+  translate(width/2, height/2, -1000);
+  rotateX(rotX);
+
+
+  translate(0, 0, 1400);
+  rotateY(rotY);
+
+  translate(0, 0, s*-1000);
+  scale(s);
+
+  stroke(255);
+
+
+
+  // beginShape(POINTS);
+
+  // esta es la parte que dibuja todo
+  // la nube de puntos y los botones hotPoint
+  for (int i = 0; i < depthPoints.length; i+=pasos)
+  {
+    PVector currentPoint = depthPoints[i];
+    // esta parte dibuja los puntos de la nube de puntos
+    if (currentPoint.z < profundidad)
     {
-      text("Currently recording...", 5, 15);
-    } else
-    {
-      text("Not recording.", 5, 15);
-    }
 
-    break;
-
-    // Calibrar
-  case 2:
-
-    background(0);
-
-
-    translate(width/2, height/2, -1000);
-    rotateX(rotX);
-
-
-    translate(0, 0, 1400);
-    rotateY(rotY);
-
-    translate(0, 0, s*-1000);
-    scale(s);
-
-    stroke(255);
-
-
-
-    // beginShape(POINTS);
-
-    // esta es la parte que dibuja todo
-    // la nube de puntos y los botones hotPoint
-    for (int i = 0; i < depthPoints.length; i+=pasos)
-    {
-      PVector currentPoint = depthPoints[i];
-      // esta parte dibuja los puntos de la nube de puntos
-      if (currentPoint.z < profundidad)
-      {
-
-        point(currentPoint.x, currentPoint.y, currentPoint.z);
-        //vertex(currentPoint.x, currentPoint.y, currentPoint.z);
-        // almacena el punto actual del arreglo de la nube de puntos
-
-
-        // dibuja los hotPoints en columnas y filas
-        for (int k = 0; k < row; k++)
-        {
-          for (int l = 0; l < col; l++)
-          {
-            botLiq[k][l].check(currentPoint);
-          }
-        }
-      }
-    }
-    // endShape();
-
-
-
-    // esta parte revisa si el boton esta siendo activado, dispara el sonido
-    for (int k = 0; k < row; k++)
-    {
-      for (int l = 0; l < col; l++)
-      {
-        // en esta parte se activan los sonidos por su correspondiente posisicion
-        // aqui se puede anexar un solo sonido que pueda corresponder a una accion constante como caminar
-        if (botLiq[k][l].isHit())
-        {
-          delay(100);
-          sonidosLiquidos[k][l].trigger();
-        }
-      }
-    }
-
-    // aqui se borran los puntos dibujados y se limpia la informacion del current point
-    for (int k = 0; k < row; k++)
-    {
-      for (int l = 0; l < col; l++)
-      {
-        botLiq[k][l].draw();
-        botLiq[k][l].clear();
-      }
-    }
-
-
-    break;
-
-    // cualquier otra entrada solo sigue dibujando la nube de puntos
-  default:
-
-    for (int i = 0; i < depthPoints.length; i+=pasos) {
-      PVector currentPoint = depthPoints[i];
-      if (currentPoint.z < profundidad)
-        point(currentPoint.x, currentPoint.y, currentPoint.z);
+      point(currentPoint.x, currentPoint.y, currentPoint.z);
       //vertex(currentPoint.x, currentPoint.y, currentPoint.z);
+      // almacena el punto actual del arreglo de la nube de puntos
+
+
+      // dibuja los hotPoints en columnas y filas
+      for (int k = 0; k < row; k++)
+      {
+        for (int l = 0; l < col; l++)
+        {
+          botLiq[k][l].check(currentPoint);
+        }
+      }
     }
+  }
+  // endShape();
 
-
-    break;
-
-    //termina el switch
+  // esta parte revisa si el boton esta siendo activado, dispara el sonido
+  for (int k = 0; k < row; k++)
+  {
+    for (int l = 0; l < col; l++)
+    {
+      // en esta parte se activan los sonidos por su correspondiente posisicion
+      // aqui se puede anexar un solo sonido que pueda corresponder a una accion constante como caminar
+      if (botLiq[k][l].isHit())
+      {
+        delay(100);
+        sonidosLiquidos[k][l].trigger();
+      }
+    }
   }
 
-  // draw the kinect cam
-  kinect.drawCamFrustum();
+  // aqui se borran los puntos dibujados y se limpia la informacion del current point
+  for (int k = 0; k < row; k++)
+  {
+    for (int l = 0; l < col; l++)
+    {
+      botLiq[k][l].draw();
+      botLiq[k][l].clear();
+    }
+  }
+
+
+  if ( recorder.isRecording() )
+  {
+    text("Currently recording...", 5, 15);
+  } else
+  {
+    text("Not recording.", 5, 15);
+  }
+  //termina el switch
+}
+
+// draw the kinect cam
+kinect.drawCamFrustum();
 }
 
 
@@ -463,15 +427,9 @@ void keyPressed() {
     println("zoom - " + s);
   }
 
-  //controles de los estados
   if (key == '1') {
-    estado = 1;
-    println("Grabar + " + estado);
-  }
-
-  if (key == '2') {
     estado = 2;
-    println("Play + " + estado);
+    println("Recargando + " + estado);
     // inicializar los sonidos del arreglo
 
     sonidosLiquidos = new AudioSample [row][col];
