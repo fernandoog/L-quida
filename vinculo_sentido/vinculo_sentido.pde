@@ -652,6 +652,17 @@ void keyReleased() {
     recorder.save();
     println("Save D4");
   }
+  if ( key == '1')
+  {
+    for (int i = 0; i < row; i++)
+    {
+      for (int j = 0; j < col; j++)
+      {
+        sonidosLiquidos[i][j] = minim.loadSample(tracks[i][j], 512);
+        println("cargando sonidos " + tracks[i][j]);
+      }
+    }
+  }
 }
 
 // control del paneo y tilt de la camara
