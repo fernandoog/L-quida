@@ -147,12 +147,12 @@ int aumentoElev = 10;
 
 
 //dimensiones del boton
-int tamano = 600;
+int tamano = 400;
 
 //distancia de la camara al inicio de la reticula
 
 // lo manejamos con las letras  'G' y 'H'
-int distRet = 1500;
+int distRet = 2000;
 
 // pasos de juste de la reticula a liquida
 int distRetAumento = 20;
@@ -165,10 +165,10 @@ float s = 1;
 int pasos = 10;
 
 // Se controla la profundidad de rastreo con "L" y "K"
-int profundidad = 3000;
+int profundidad = 1500;
 
 // Delay Z y X
-int delay = 100;
+int delay = 50;
 
 AudioInput in;
 AudioRecorder recorder;
@@ -680,15 +680,15 @@ void mouseDragged() {
 
 
   if ((mouseY-pmouseY) >= 0) {
-    rotX+=0.05;
-  } else {
     rotX-=0.05;
+  } else {
+    rotX+=0.05;
   }
 
   if ((mouseX-pmouseX) >= 0) {
-    rotY+=0.1;
-  } else {
     rotY-=0.1;
+  } else {
+    rotY+=0.1;
   }
 }
 
