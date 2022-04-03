@@ -144,7 +144,7 @@ int aumentoElev = 10;
 int tamano = 500;
 
 //distancia de la camara al inicio de la reticula
-int distRet = 3000;
+int distRet = 1000;
 
 // pasos de juste de la reticula a liquida
 int distRetAumento = 10;
@@ -376,7 +376,7 @@ void keyPressed() {
 
   if (key == 'w')
   {
-    distRet += 50;
+    distRet += 100;
     for (int k = 0; k < col; k++)
     {
       for (int l = 0; l < row; l++)
@@ -388,7 +388,7 @@ void keyPressed() {
   }
   if (key == 's')
   {
-    distRet -= 50;
+    distRet -= 100;
     for (int k = 0; k < col; k++)
     {
       for (int l = 0; l < row; l++)
