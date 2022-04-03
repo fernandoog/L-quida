@@ -259,7 +259,7 @@ void draw() {
     // Calibrar
   case 2:
 
-   background(0);
+    background(0);
 
 
     translate(width/2, height/2, -1000);
@@ -315,6 +315,7 @@ void draw() {
         // aqui se puede anexar un solo sonido que pueda corresponder a una accion constante como caminar
         if (botLiq[k][l].isHit())
         {
+          delay(100);
           sonidosLiquidos[k][l].trigger();
         }
       }
@@ -468,12 +469,26 @@ void keyPressed() {
 
   if (key == '2') {
     estado = 2;
-    println("Calibrar + " + estado);
-  }
-
-  if (key == '3') {
-    estado = 3;
     println("Play + " + estado);
+    // inicializar los sonidos del arreglo
+
+    sonidosLiquidos = new AudioSample [row][col];
+
+    for (int i = 0; i < row; i++)
+    {
+      for (int j = 0; j < col; j++)
+      {
+        sonidosLiquidos[i][j] = minim.loadSample(tracks[i][j], 512);
+        println("cargando sonidos " + tracks[i][j]);
+      }
+    }
+
+    fx = new AudioPlayer[cantFx];
+    for (int i = 0; i < cantFx; i++)
+    {
+      fx[i] = minim.loadFile(tracksFx[i], 512);
+      println("Cargando tracks Fx " + tracksFx[i]);
+    }
   }
 
   // Loop
@@ -685,5 +700,22 @@ void keyReleased() {
     recorder.endRecord();
     recorder.save();
     println("Save D4");
+  }
+}
+
+// control del paneo y tilt de la camara
+void mouseDragged() {
+
+
+  if ((mouseY-pmouseY) >= 0) {
+    rotX+=0.05;
+  } else {
+    rotX-=0.05;
+  }
+
+  if ((mouseX-pmouseX) >= 0) {
+    rotY+=0.1;
+  } else {
+    rotY-=0.1;
   }
 }
