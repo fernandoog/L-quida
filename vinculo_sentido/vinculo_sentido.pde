@@ -144,17 +144,17 @@ int aumentoElev = 10;
 int tamano = 550;
 
 //distancia de la camara al inicio de la reticula
-int distRet = 1000;
+int distRet = 2000;
 
 // pasos de juste de la reticula a liquida
 int distRetAumento = 10;
 
 // Zoom
-float s = 0.90;
+float s = 1;
 
 int pasos = 7;
 
-int profundidad = 8000;
+int profundidad = 5000;
 
 // Delay Z y X
 int delay = 50;
@@ -413,11 +413,6 @@ void keyPressed() {
     println("zoom - " + s);
   }
 
-  if (key == '1') {
-    println("Recargando + " + estado);
-    reload();
-  }
-
   // Loop
 
   if (key == 'z') {
@@ -448,7 +443,7 @@ void keyPressed() {
   if (key == 'v') {
     tamano = tamano + 10;
     println("Tamaño + " + tamano);
-   
+
     botLiq = new Hotpoint[col][row];
 
     for (int k = 0; k < row; k++)
@@ -683,25 +678,5 @@ void mouseDragged() {
     rotY+=0.001;
     rotX+=0.001;
   }
-   println("Vista " + rotX + " " + rotY);
-}
-
-void reload() {
-  sonidosLiquidos = new AudioSample [row][col];
-
-  for (int i = 0; i < row; i++)
-  {
-    for (int j = 0; j < col; j++)
-    {
-      sonidosLiquidos[i][j] = minim.loadSample(tracks[i][j], 512);
-      println("cargando sonidos " + tracks[i][j]);
-    }
-  }
-
-  fx = new AudioPlayer[cantFx];
-  for (int i = 0; i < cantFx; i++)
-  {
-    fx[i] = minim.loadFile(tracksFx[i], 512);
-    println("Cargando tracks Fx " + tracksFx[i]);
-  }
+  println("Vista " + rotX + " " + rotY);
 }
