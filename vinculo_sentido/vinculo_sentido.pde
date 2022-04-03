@@ -141,10 +141,10 @@ int aumentoElev = 10;
 
 
 //dimensiones del boton
-int tamano = 410;
+int tamano = 500;
 
 //distancia de la camara al inicio de la reticula
-int distRet = 2500;
+int distRet = 3000;
 
 // pasos de juste de la reticula a liquida
 int distRetAumento = 10;
